@@ -57,7 +57,7 @@ function App() {
     <Spin spinning={loading}>
       <div className='upload-block' onClick={() => { uploadMultipleFiles() }}>
         <span className='text'>
-          {loading ? '计算中 请稍后...' : '点击上传(可多选)'}
+          {loading ? '计算中 请稍后...' : '点击上传（可多选）'}
         </span>
       </div>
     </Spin>
@@ -68,7 +68,7 @@ function App() {
         功能介绍:
         <ul>
           <li>
-            辅导员上传从信息门户导出的同学成绩(“所有成绩查询”或“近期成绩查询”)，工具会根据上传数据计算同学们的<Text strong>必修限选GPA和全部课程GPA</Text>(保留3位小数)，
+            辅导员上传从信息门户导出的同学成绩（“所有成绩查询”或“近期成绩查询”），工具会根据上传数据计算同学们的<Text strong>必修限选GPA和全部课程GPA</Text>（保留3位小数），
             并给出相应的年级排名和班级排名，生成计算好的表格文件下载到电脑上。
           </li>
           <li>
@@ -81,10 +81,10 @@ function App() {
         </ul>
       </Paragraph>
       <Paragraph>
-        联系方式:
+        联系方式:（若有 Bug 或建议可联系我）
         <ul>
           <li>清华邮箱: <Text keyboard>wang-sy20@mails.tsinghua.edu.cn</Text></li>
-          <li>网易邮箱: <Text keyboard>whiteffire@163.com</Text>(常用)</li>
+          <li>网易邮箱: <Text keyboard>whiteffire@163.com</Text>（常用）</li>
         </ul>
       </Paragraph>
       <Paragraph>
