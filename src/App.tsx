@@ -10,6 +10,7 @@ const { Title, Paragraph, Text } = Typography
 function App() {
   const [loading, setLoading] = useState(false)
 
+  /** uploadMultipleFiles 上传多个文件并下载返回结果 */
   const uploadMultipleFiles = () => {
     const inputEl = document.createElement('input')
     inputEl.type = 'file'
@@ -18,7 +19,7 @@ function App() {
     inputEl.onchange = (e: any) => {
       console.log(e);
       const form = new FormData()
-      const files = Array.from(e.path[0].files)
+      const files = Array.from((e.target || e.path?.[0]).files)
       console.log('files', files);
       files.forEach((f: any) => {
         form.append(f.name, f)
@@ -28,9 +29,23 @@ function App() {
         method: 'POST',
         body: form,
         mode: 'no-cors'
-      }).finally(() => {
-        setLoading(false)
-      })
+      }).then((res) => res.json())
+        .then((res) => {
+          const filepath = res.filepath
+          return fetch('/' + filepath)
+          .then((res) => res.blob())
+          .then((blob) => {
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filepath.split('/')[1]
+            document.body.appendChild(a); 
+            a.click();    
+            a.remove();
+          })
+        }).finally(() => {
+          setLoading(false)
+        })
       inputEl.remove()
     }
     inputEl.click()
@@ -50,7 +65,7 @@ function App() {
       <Title level={3}>使用帮助</Title>
       <Paragraph>用前须知: <Text mark>本工具仅提供给清华大学辅导员计算所带同学成绩使用，工具不会保存辅导员上传的成绩，请放心使用！</Text></Paragraph>
       <Paragraph>
-        功能介绍: 
+        功能介绍:
         <ul>
           <li>
             辅导员上传从信息门户导出的同学成绩(“所有成绩查询”或“近期成绩查询”)，工具会根据上传数据计算同学们的<Text strong>必修限选GPA和全部课程GPA</Text>(保留3位小数)，
@@ -66,14 +81,14 @@ function App() {
         </ul>
       </Paragraph>
       <Paragraph>
-        联系方式: 
+        联系方式:
         <ul>
           <li>清华邮箱: <Text keyboard>wang-sy20@mails.tsinghua.edu.cn</Text></li>
           <li>网易邮箱: <Text keyboard>whiteffire@163.com</Text>(常用)</li>
         </ul>
       </Paragraph>
       <Paragraph>
-        更新日志: 
+        更新日志:
         <ul>
           <li>2022.01.20: 更新用户界面，支持多文件上传</li>
         </ul>
