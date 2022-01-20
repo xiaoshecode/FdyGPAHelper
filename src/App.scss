@@ -2,7 +2,7 @@ $title-size: 48px;
 $upload-text-size: 24px;
 
 .container {
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
   padding: 50px 0;
   text-align: center;
@@ -28,5 +28,23 @@ $upload-text-size: 24px;
     width: 80%;
     margin: 30px auto;
     text-align: start;
+  }
+}
+
+@media (min-width: 480px) {
+  .container {
+    width: 95%;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 90%;
+  }
+}
+
+@media (min-width: 1278px) {
+  .container {
+    width: 80%;
   }
 }
