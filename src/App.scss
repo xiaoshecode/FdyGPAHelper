@@ -10,6 +10,9 @@ $upload-text-size: 24px;
     font-size: $title-size;
     font-weight: bold;
     margin: 30px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .upload-block {
     width: 80%;
