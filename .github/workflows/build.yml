@@ -6,10 +6,8 @@ on:
       - master
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    outputs:
-      dist-path: ${{ steps.build.outputs.dist-path }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -20,20 +18,10 @@ jobs:
           node-version: '18'
 
       - name: Install dependencies
-        run: yarn
+        run: yarn install
 
       - name: Build project
-        id: build
-        run: |
-          yarn build
-          echo "dist-path=dist" >> $GITHUB_OUTPUT
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+        run: yarn build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
