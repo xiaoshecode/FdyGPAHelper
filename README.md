@@ -4,10 +4,30 @@ xiaoshe copy by powerfool
 该工具提供给清华大学辅导员计算同学的 GPA 以及班级和年级排名，无后端实现，成绩数据全部在浏览器上进行计算。
 自己保留一份，方便修改和查看源代码。
 
+
 ## 使用方法
 
-- 访问线上版本: 直接访问部署在该仓库的 GitHub Pages 上的版本 [GPA-Helper](https://xiaoshecode.github.io/gpa-helper/)
+- 访问线上版本: 直接访问部署在该仓库的 GitHub Pages 上的版本 [GPA-Helper](https://xiaoshecode.github.io/FdyGPAHelper/)
 - 本地开发模式: 将该仓库代码克隆到本地，使用 `yarn` 安装依赖，然后使用 `yarn start` 启动本地开发服务器
+
+## 如何使用 Yarn 部署到 GitHub Pages
+
+1. 安装依赖：
+	```shell
+	yarn install
+	yarn add --dev gh-pages
+	```
+2. 构建项目：
+	```shell
+	yarn build
+	```
+3. 部署到 GitHub Pages：
+	```shell
+	yarn deploy
+	```
+4. 在 GitHub 仓库设置页面，选择 gh-pages 分支作为 Pages 发布源。
+
+项目会自动将 `dist` 目录推送到 `gh-pages` 分支，稍等片刻即可通过 `https://xiaoshecode.github.io/FdyGPAHelper/` 访问。
 
 ## 更新日志
 

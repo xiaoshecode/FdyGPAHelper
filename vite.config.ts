@@ -6,7 +6,7 @@ import pkg from './package.json';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: "gpa-helper",
+  base: "/FdyGPAHelper/",
   define: {
     "process.env.PACKAGE_VERSION": JSON.stringify(pkg.version),
   },

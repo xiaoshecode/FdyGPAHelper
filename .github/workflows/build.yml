@@ -29,3 +29,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
+          # 自动部署到 gh-pages 分支
+          publish_branch: gh-pages
+          # 保留历史，方便回滚
+          keep_files: false
