@@ -8,7 +8,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    outputs:
+      dist-path: ${{ steps.build.outputs.dist-path }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -22,14 +23,24 @@ jobs:
         run: yarn
 
       - name: Build project
-        run: yarn build
+        id: build
+        run: |
+          yarn build
+          echo "dist-path=dist" >> $GITHUB_OUTPUT
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
-          # 自动部署到 gh-pages 分支
           publish_branch: gh-pages
+          # 自动部署到 gh-pages 分支
           # 保留历史，方便回滚
           keep_files: false
